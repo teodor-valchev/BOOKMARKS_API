@@ -14,10 +14,8 @@ export class AuthController {
   @Post('signup') // /auth/signup
   signup(@Body() dto: AuthDto) {
     // @Req() req: Request (don't use)it used  like this, it will be using just like Express
-    console.log({
-      dto,
-    });
-    this.authService.signup();
+
+    this.authService.signup(dto);
   }
 
   @Post('signin') // /auth/signup
