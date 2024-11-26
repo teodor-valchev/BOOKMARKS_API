@@ -1,0 +1,1 @@
+export * from './auth.dto'// the idea behind this is not to use everywhere './dto/auth.dto.ts'
