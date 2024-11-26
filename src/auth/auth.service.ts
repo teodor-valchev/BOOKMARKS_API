@@ -1,12 +1,17 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
+import { User, Bookmark } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable({})
-export class AuthService{
-    signin() { 
-        return {msg: "Success sign in"}
-    }
+export class AuthService {
+  constructor(private prisma: PrismaService) {
     
-    signup() {
-        return {msg: "Success sign un"}
-    }
+  }
+  signin() {
+    return { msg: 'Success sign in' };
+  }
+
+  signup() {
+    return { msg: 'Success sign un' };
+  }
 }
