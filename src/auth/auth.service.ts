@@ -43,12 +43,13 @@ export class AuthService {
 
   async signin(dto: AuthDto) {
     //find the user by email
-    const user =
-      await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findFirst(
+      {
         where: {
           email: dto.email,
         },
-      });
+      },
+    );
     //if doesnt'exist throw error
     if (!user) {
       throw new ForbiddenException(
@@ -57,7 +58,10 @@ export class AuthService {
     }
 
     //compare password
-    const pwMatches = await argon.verify(user.hash, dto.password);
+    const pwMatches = await argon.verify(
+      user.hash,
+      dto.password,
+    );
 
     if (!pwMatches) {
       throw new ForbiddenException(
