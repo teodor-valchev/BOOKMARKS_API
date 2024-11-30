@@ -133,8 +133,6 @@ describe('App e2e', () => {
           .expectStatus(200);
       });
     });
-
-    describe('Edit user', () => { });
   });
 
   describe('Bookmarks', () => {
