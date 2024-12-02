@@ -6,7 +6,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { PrismaService } from '../src/prisma/prisma.service';
-import { AuthDto } from '../src/dto';
+import { AuthDto } from '../src/auth/dto';
 import { EditUserDto } from 'src/user/dto';
 
 describe('App e2e', () => {
