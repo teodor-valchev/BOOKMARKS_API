@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { AuthDto } from '../src/dto';
+import { EditUserDto } from 'src/user/dto';
 
 describe('App e2e', () => {
   let app: INestApplication;
@@ -123,13 +124,30 @@ describe('App e2e', () => {
 
   describe('User', () => {
     describe('Get me', () => {
-      it('should get current user', () => {
+      it('should throw err  user', () => {
         return pactum
           .spec()
           .get('/users/me')
           .withHeaders({
-            Authorization: 'Bearer $S{userAt}'
+            Authorization: 'Bearer $S{userAt}',
           })
+          .expectStatus(401);
+      });
+    });
+
+    describe('Edit user', () => {
+      it('should edit user', () => {
+        const dto: EditUserDto = {
+          firstName: 'Teo',
+          email: 'teo@abv.bg',
+        };
+        return pactum
+          .spec()
+          .patch('/users')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .withBody(dto)
           .expectStatus(200);
       });
     });
